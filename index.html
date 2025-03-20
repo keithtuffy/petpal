@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPal BioTag - Smart Health Monitoring for Senior Pets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --secondary: #00d2ff;
+            --accent: #FF6B6B;
+            --text: #333;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1560743641-3914f2c45636?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-white);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .stats {
+            background: linear-gradient(rgba(58, 123, 213, 0.9), rgba(0, 210, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1559190394-df5a28aab5c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefits {
+            background-color: var(--bg-white);
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 1rem;
+            padding-top: 0.2rem;
+        }
+        
+        .testimonials {
+            background-color: var(--bg-light);
+        }
+        
+        .testimonial-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-width: 300px;
+            scroll-snap-align: start;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .pricing {
+            background-color: var(--bg-white);
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .price-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card.featured {
+            transform: scale(1.05);
+            background: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .price-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--text);
+        }
+        
+        .price-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .price-features li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .faq {
+            background-color: var(--bg-light);
+        }
+        
+        .faq-item {
+            background: var(--bg-white);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .contact {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PetPal BioTag</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="btn">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Keep Your Senior Pet Safe & Healthy</h1>
+            <p>PetPal BioTag is the smart biometric tracking collar for senior dogs and cats that monitors vital signs, activity, and well-being in real-time.</p>
+            <a href="#pricing" class="btn btn-primary">Shop Now</a>
+            <a href="#features" class="btn" style="margin-left: 1rem; background: rgba(255,255,255,0.2);">Learn More</a>
+        </div>
+    </section>
+    
+    <section id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advanced Features</h2>
+                <p>The most comprehensive health monitoring solution for your senior pet</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Monitoring</h3>
+                    <p>Tracks heart rate, respiratory rate, temperature, and hydration levels in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Detection</h3>
+                    <p>Advanced AI detects anomalies and alerts you to potential health issues before they become serious</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Activity Monitoring</h3>
+                    <p>Tracks mobility and detects declines or signs of pain to ensure your pet stays comfortable</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Smart Alerts</h3>
+                    <p>Receive notifications for unusual behavior, missed medication, or upcoming vet appointments</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Waterproof Design</h3>
+                    <p>Durable and waterproof construction ensures reliable performance in any environment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>Long Battery Life</h3>
+                    <p>Up to 3 weeks of battery life on a single charge keeps you connected longer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Market Research</h2>
+                <p>The growing demand for pet health technology</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>$961.7M</h3>
+                    <p>Projected market value of smart pet collars by 2033</p>
+                </div>
+                <div class="stat-item">
+                    <h3>$10.43B</h3>
+                    <p>Expected size of the pet wearable market by 2032</p>
+                </div>
+                <div class="stat-item">
+                    <h3>14%</h3>
+                    <p>Dog owners concerned about pet loss</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3x</h3>
+                    <p>Increase in senior pet healthcare needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose PetPal BioTag?</h2>
+                <p>Designed specifically for the unique needs of senior pets</p>
+            </div>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Proactive Health Management</h3>
+                        <p>Detect health issues before they become serious, allowing for early intervention</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Peace of Mind</h3>
+                        <p>Know your senior pet is safe and healthy, even when you're away</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Reduced Vet Costs</h3>
+                        <p>Catch issues early to prevent costly emergency veterinary visits</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Improved Quality of Life</h3>
+                        <p>Ensure your pet's comfort by monitoring pain and mobility issues</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Comprehensive Health History</h3>
+                        <p>Track health trends over time to share with your veterinarian</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Lightweight Comfort</h3>
+                        <p>Non-invasive design ensures your pet won't even notice they're wearing it</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Pet Owners Say</h2>
+                <p>Real stories from senior pet owners using PetPal BioTag</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "PetPal BioTag alerted me to changes in my 12-year-old Golden Retriever's heart rate. The vet diagnosed an early heart condition that we're now managing with medication. Without PetPal, we might not have caught it in time."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah T." class="author-img">
+                        <div>
+                            <h4>Sarah T.</h4>
+                            <p>Dog Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "My 15-year-old cat was showing subtle signs of arthritis that I missed, but PetPal detected the changes in her activity patterns. We started treatment early, and she's now much more comfortable and active again."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael K." class="author-img">
+                        <div>
+                            <h4>Michael K.</h4>
+                            <p>Cat Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The peace of mind PetPal gives me is priceless. As my dog enters his senior years, knowing I'll be alerted to health changes immediately makes a huge difference. The battery life is amazing too!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Patricia L." class="author-img">
+                        <div>
+                            <h4>Patricia L.</h4>
+                            <p>Dog Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your Plan</h2>
+                <p>Affordable plans for every pet owner</p>
+            </div>
+            <div class="pricing-container">
+                <div class="price-card">
+                    <h3>Basic</h3>
+                    <div class="price">$89<span>/one-time</span></div>
+                    <p>Perfect for getting started with health monitoring</p>
+                    <ul class="price-features">
+                        <li>Health monitoring</li>
+                        <li>Activity tracking</li>
+                        <li>Basic alerts</li>
+                        <li>3-week battery life</li>
+                        <li>1-year warranty</li>
+                    </ul>
+                    <a href="#" class="btn">Buy Now</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>Premium</h3>
+                    <div class="price">$129<span>/one-time</span></div>
+                    <p>Comprehensive protection for your senior pet</p>
+                    <ul class="price-features">
+                        <li>Advanced health monitoring</li>
+                        <li>AI-powered anomaly detection</li>
+                        <li>Premium alerts & notifications</li>
+                        <li>Vet history integration</li>
+                        <li>3-week battery life</li>
+                        <li>2-year warranty</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Buy Now</a>
+                </div>
+                <div class="price-card">
+                    <h3>Family</h3>
+                    <div class="price">$199<span>/one-time</span></div>
+                    <p>Perfect for homes with multiple pets</p>
+                    <ul class="price-features">
+                        <li>2 Premium PetPal BioTags</li>
+                        <li>All Premium features</li>
+                        <li>Multi-pet dashboard</li>
+                        <li>Priority customer support</li>
+                        <li>3-week battery life</li>
+                        <li>2-year warranty</li>
+                    </ul>
+                    <a href="#" class="btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about PetPal BioTag</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does PetPal BioTag monitor my pet's health?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>PetPal BioTag uses advanced sensors to monitor heart rate, respiratory rate, temperature, and hydration levels in real-time. The data is analyzed by our AI system to detect anomalies and potential health issues.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is PetPal BioTag comfortable for my senior pet?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! PetPal BioTag is lightweight, non-invasive, and specifically designed for senior pets. Most pets don't even notice they're wearing it.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does the battery last?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>PetPal BioTag has a battery life of up to 3 weeks on a single charge, depending on usage and settings.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I share the data with my veterinarian?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! PetPal BioTag generates detailed health reports that you can easily share with your veterinarian to provide a comprehensive view of your pet's health between visits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ready to Protect Your Senior Pet?</h2>
+                <p>Join thousands of pet owners providing the best care for their aging companions</p>
+            </div>
+            <a href="#pricing" class="btn btn-primary" style="background: white; color: var(--primary); font-size: 1.2rem; padding: 1rem 3rem;">Shop Now</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 PetPal BioTag. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add event listeners to buy buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            if (button.textContent.includes('Buy Now') || button.textContent.includes('Shop Now')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your interest in PetPal BioTag! Our product will be available soon. Please check back or leave your email for updates.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
