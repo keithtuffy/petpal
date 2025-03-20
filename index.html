@@ -200,6 +200,51 @@
             color: var(--primary);
         }
         
+        /* Product Prototype Styles */
+        .prototype-section {
+            background-color: var(--bg-white);
+            padding: 3rem 0;
+        }
+        
+        .prototype-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .prototype-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin: 2rem 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .prototype-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .prototype-description {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .prototype-description h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .prototype-description p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Continue with existing stats styles */
         .stats {
             background: linear-gradient(rgba(58, 123, 213, 0.9), rgba(0, 210, 255, 0.9)), 
                         url('https://images.unsplash.com/photo-1559190394-df5a28aab5c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
@@ -445,7 +490,8 @@
 <body>
     <header>
         <nav>
-                <div class="logo">PetPal BioTag</div>
+            <div class="logo">
+                <img src="images/petpal.png" alt="PetPal BioTag Logo">
                 <span>PetPal BioTag</span>
             </div>
             <ul class="nav-links">
@@ -532,6 +578,21 @@
                     <h3>Long Battery Life</h3>
                     <p>Up to 3 weeks of battery life on a single charge keeps you connected longer</p>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Prototype Section -->
+    <section class="prototype-section">
+        <div class="prototype-container">
+            <div class="prototype-description">
+                <h2>Our Product Prototype</h2>
+                <p>Introducing the PetPal BioTag - designed with comfort and functionality in mind. The smart biometric collar that keeps senior pets healthy, happy, and safe.</p>
+            </div>
+            <img src="images/prototype.png" alt="PetPal BioTag Prototype" class="prototype-image">
+            <div class="prototype-description">
+                <p>The sleek, lightweight design ensures your pet stays comfortable while advanced sensors monitor their vital health metrics 24/7.</p>
+                <a href="#pricing" class="btn btn-primary">Pre-order Now</a>
             </div>
         </div>
     </section>
